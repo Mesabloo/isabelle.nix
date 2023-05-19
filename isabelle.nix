@@ -181,7 +181,7 @@ stdenv.mkDerivation
     src =
       fetchurl {
         url = "https://github.com/m-fleury/isabelle-emacs/archive/${dirname}-more-vscode.tar.gz";
-        sha256 = "sha256-lDoqIu4UrJ8lcjPj+vuX1tx7Jk0Q0QJu9yiz+8mKFZc=";
+        sha256 = "sha256-w4zZXTnXtBYfrN2201Jr8oXbEUpAR1PH7IwOIcqh774=";
       };
 
     buildInputs = [ polyml z3 veriT vampire eprover-ho nettools curl cvc4 cvc5 leo2 leo3 iprover satallax ];
