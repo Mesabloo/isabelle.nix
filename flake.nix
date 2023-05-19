@@ -3,17 +3,18 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs }:
-    let
-      pkgs = import nixpkgs { };
-      polyml = pkgs.callPackage ./polyml.nix { };
-      isabelle = pkgs.callPackgae ./isabelle.nix { inherit polyml; };
-    in
-    {
-      overlays.default = final: prev: {
-        inherit isabelle polyml;
-      };
-    };
+  outputs = { self, nixpkgs, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+        polyml = pkgs.callPackage ./polyml.nix { };
+        isabelle = pkgs.callPackage ./isabelle.nix { inherit polyml; };
+      in
+      {
+        packages = { inherit isabelle polyml; };
+      }
+    );
 }
