@@ -419,7 +419,7 @@ stdenv.mkDerivation
       substituteInPlace src/Tools/Setup/src/Environment.java \
         --replace 'cmd.add("/usr/bin/env");' "" \
         --replace 'cmd.add("bash");' "cmd.add(\"$SHELL\");" \
-        --replace 'private static read_file(path: Path): String =' 'private static String read_file(Path path)'
+        --replace 'private static read_file(path: Path): String =' 'private static String read_file(Path path) throws IOException'
 
       substituteInPlace src/Pure/General/sha1.ML \
         --replace '"$ML_HOME/" ^ (if ML_System.platform_is_windows then "sha1.dll" else "libsha1.so")' '"${sha1}/lib/libsha1.so"'
@@ -433,7 +433,7 @@ stdenv.mkDerivation
       for f in contrib/*/$arch/{epclextract,nunchaku,zipperposition}; do
         patchelf --set-interpreter $(cat ${stdenv.cc}/nix-support/dynamic-linker) "$f"
       done
-      for f in contrib/*/platform_$arch/{bash_process}; do
+      for f in contrib/*/platform_$arch/bash_process; do
         patchelf --set-interpreter $(cat ${stdenv.cc}/nix-support/dynamic-linker) "$f"
       done
       for d in contrib/kodkodi-*/jni/$arch; do

@@ -2,7 +2,8 @@
   description = "Isabelle2022 with a better LSP integration (specifically useful for emacs)";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs";
+    # We need Z3 v4.4.0 absolutely. newer versions don't work.
+    nixpkgs.url = "github:nixos/nixpkgs?rev=4d2b37a84fad1091b9de401eb450aae66f1a741e";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -16,10 +17,11 @@
     in
     flake-utils.lib.eachSystem systems (system:
       let
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs {
+          inherit system;
+        };
         polyml = pkgs.callPackage ./polyml.nix { };
-        z3 = pkgs.callPackage ./z3.nix { };
-        isabelle = pkgs.callPackage ./isabelle.nix { inherit polyml z3; };
+        isabelle = pkgs.callPackage ./isabelle.nix { inherit polyml; z3 = pkgs.z3_4_4_0; };
       in
       {
         packages = { inherit isabelle polyml; };
