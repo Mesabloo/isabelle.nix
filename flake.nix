@@ -7,11 +7,19 @@
   };
 
   outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
+    let
+      systems = with flake-utils.lib; [
+        system.x86_64-linux
+        # Sorry if you are on any other system, but we require some packages which
+        # can't be installed there.
+      ];
+    in
+    flake-utils.lib.eachSystem systems (system:
       let
         pkgs = import nixpkgs { inherit system; };
         polyml = pkgs.callPackage ./polyml.nix { };
-        isabelle = pkgs.callPackage ./isabelle.nix { inherit polyml; };
+        z3 = pkgs.callPackage ./z3.nix { };
+        isabelle = pkgs.callPackage ./isabelle.nix { inherit polyml z3; };
       in
       {
         packages = { inherit isabelle polyml; };

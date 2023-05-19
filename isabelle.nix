@@ -1,12 +1,37 @@
 # Ideally, we should use the bundled versions of cvc4, z3, veriT, zipperposition and e.
 # But I prefer using those coming from nixpkgs (careful, z3 needs to be the version 4.4.0).
 
-{ lib, stdenv, fetchurl, coreutils, nettools, jdk, polyml, z3_4_4_0, veriT, vampire, eprover-ho, naproche, rlwrap, perl, makeDesktopItem, isabelle-components, isabelle, symlinkJoin, curl, spass, leo2, leo3-bin, iprover, satallax, cvc4, cvc5 }:
+{ lib, stdenv, fetchurl, coreutils, nettools, jdk, polyml, z3, veriT, vampire, eprover-ho, naproche, rlwrap, perl, makeDesktopItem, isabelle-components, isabelle, symlinkJoin, curl, spass, leo2, leo3-bin, iprover, satallax, cvc4, cvc5, fetchhg }:
 # nettools needed for hostname
 
 let
+  sha1 = stdenv.mkDerivation {
+    pname = "isabelle-sha1";
+    version = "2021-1";
+
+    src = fetchhg {
+      url = "https://isabelle.sketis.net/repos/sha1";
+      rev = "e0239faa6f42";
+      sha256 = "sha256-4sxHzU/ixMAkSo67FiE6/ZqWJq9Nb9OMNhMoXH2bEy4=";
+    };
+
+    buildPhase = (if stdenv.isDarwin then ''
+      LDFLAGS="-dynamic -undefined dynamic_lookup -lSystem"
+    '' else ''
+      LDFLAGS="-fPIC -shared"
+    '') + ''
+      CFLAGS="-fPIC -I."
+      $CC $CFLAGS -c sha1.c -o sha1.o
+      $LD $LDFLAGS sha1.o -o libsha1.so
+    '';
+
+    installPhase = ''
+      mkdir -p $out/lib
+      cp libsha1.so $out/lib/
+    '';
+  };
+
   java = jdk;
-  z3 = z3_4_4_0;
   leo3 = leo3-bin;
 
   contrib-apache-commons = fetchurl {
@@ -141,10 +166,10 @@ let
   #   url = "https://isabelle.sketis.net/components/z3-4.4.0_4.4.1.tar.gz";
   #   sha256 = "sha256-Wks0WOAYSlAFNSszUKwYYciYJTUOS7Vg1p06HnRe8gg=";
   # };
-  # contrib-zipperposition = fetchurl {
-  #   url = "https://isabelle.sketis.net/components/zipperposition-2.1-1.tar.gz";
-  #   sha256 = "sha256-zZCvE4HYd2O2trdqtT+NUee+3JnksxewTxgrDvFD2uI=";
-  # };
+  contrib-zipperposition = fetchurl {
+    url = "https://isabelle.sketis.net/components/zipperposition-2.1-1.tar.gz";
+    sha256 = "sha256-zZCvE4HYd2O2trdqtT+NUee+3JnksxewTxgrDvFD2uI=";
+  };
 in
 stdenv.mkDerivation
   rec {
@@ -232,7 +257,8 @@ stdenv.mkDerivation
         echo 'unpacking source archive ${contrib-xz-java}'
         tar -xf ${contrib-xz-java}
         # Z3
-        # Zipperposition
+        echo 'unpacking source archive ${contrib-zipperposition}'
+        tar -xf ${contrib-zipperposition}
 
         cd $OLD_PWD
       '';
@@ -242,7 +268,7 @@ stdenv.mkDerivation
 
       mkdir -p \
         contrib/${z3.name}/etc \
-        contrib/${verti.name}/etc \
+        contrib/${veriT.name}/etc \
         contrib/${eprover-ho.name}/etc \
         contrib/${vampire.name}/etc \
         contrib/${polyml.name}/etc \
@@ -252,7 +278,7 @@ stdenv.mkDerivation
         contrib/${satallax.name}/etc \
         contrib/${cvc5.name}/etc \
         contrib/${cvc4.name}/etc \
-        contrib/${iprover.name}/etc \
+        contrib/${iprover.name}/etc 
       
       cat >contrib/${z3.name}/etc/settings <<EOF
         Z3_HOME=${z3}
@@ -261,7 +287,7 @@ stdenv.mkDerivation
         Z3_INSTALLED=yes
       EOF
 
-      cat >contrib/${verit.name}/etc/settings <<EOF
+      cat >contrib/${veriT.name}/etc/settings <<EOF
         ISABELLE_VERIT=${veriT}/bin/veriT
       EOF
 
@@ -322,11 +348,6 @@ stdenv.mkDerivation
         IPROVER_VERSION=${iprover.version}
       EOF
 
-      cat >contrib/${zipperposition.name}/etc/settings <<EOF
-        ZIPPERPOSITION_HOME=${zipperposition}/bin
-        ZIPPERPOSITION_VERSION=${zipperposition.version}
-      EOF
-
       cat >etc/components <<EOF
       #built-in components
       src/Tools/jEdit
@@ -347,7 +368,7 @@ stdenv.mkDerivation
       contrib/csdp-6.1.1
       contrib/${cvc4.name}
       contrib/${cvc5.name}
-      contrib/${eprover.name}
+      contrib/${eprover-ho.name}
       contrib/flatlaf-2.4
       contrib/idea-icons-20210508
       contrib/${iprover.name}
@@ -374,12 +395,12 @@ stdenv.mkDerivation
       contrib/sqlite-jdbc-3.36.0.3
       contrib/stack-2.7.3
       contrib/${vampire.name}
-      contrib/${verit.name}
+      contrib/${veriT.name}
       #contrib/vscode_extension-20220829
       #contrib/vscodium-1.70.1
       contrib/xz-java-1.9
       contrib/${z3.name}
-      contrib/${zipperposition.name}
+      contrib/zipperposition-2.1-1
       contrib/naproche-20221024
       EOF
 
@@ -409,10 +430,10 @@ stdenv.mkDerivation
         --replace 'ISABELLE_APPLE_PLATFORM64=arm64-darwin' ""
     '' + (if ! stdenv.isLinux then "" else ''
       arch=${if stdenv.hostPlatform.system == "x86_64-linux" then "x86_64-linux" else "x86-linux"}
-      for f in contrib/*/$arch/{epclextract,nunchaku,SPASS,zipperposition}; do
+      for f in contrib/*/$arch/{epclextract,nunchaku,zipperposition}; do
         patchelf --set-interpreter $(cat ${stdenv.cc}/nix-support/dynamic-linker) "$f"
       done
-      for f in contrib/*/platform_$arch/{bash_process,SPASS}; do
+      for f in contrib/*/platform_$arch/{bash_process}; do
         patchelf --set-interpreter $(cat ${stdenv.cc}/nix-support/dynamic-linker) "$f"
       done
       for d in contrib/kodkodi-*/jni/$arch; do
