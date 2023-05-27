@@ -15,20 +15,27 @@
         # can't be installed there.
       ];
     in
-    flake-utils.lib.eachSystem systems (system:
-      let
-        pkgs = import nixpkgs {
-          inherit system;
-        };
-        polyml = pkgs.callPackage ./polyml.nix { };
-        isabelle = pkgs.callPackage ./isabelle.nix { inherit polyml; z3 = pkgs.z3_4_4_0; };
-        # Create a fake "emacs" executable which sets the correct path to the LSP server at startup.
-        emacs = pkgs.writeShellScriptBin "emacs" ''
-          ${pkgs.emacs}/bin/emacs --eval '(setq lsp-isar-path-to-isabelle "${isabelle}")' "$@"
-        '';
-      in
-      {
-        packages = { inherit isabelle polyml emacs; };
-      }
-    );
+    flake-utils.lib.eachSystem systems
+      (system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+          };
+          polyml = pkgs.callPackage ./polyml.nix { };
+          isabelle = pkgs.callPackage ./isabelle.nix { inherit polyml; z3 = pkgs.z3_4_4_0; };
+          # Create a fake "emacs" executable which sets the correct path to the LSP server at startup.
+          emacs = pkgs.writeShellScriptBin "emacs" ''
+            ${pkgs.emacs}/bin/emacs --eval '(setq lsp-isar-path-to-isabelle "${isabelle}")' "$@"
+          '';
+        in
+        {
+          packages = {
+            inherit isabelle polyml emacs;
+            isabelle-afp = pkgs.callPackage ./afp.nix { };
+            isabelle-llvm = pkgs.callPackage ./llvm.nix { };
+          };
+        }
+      ) // {
+      lib = import ./lib.nix self;
+    };
 }
