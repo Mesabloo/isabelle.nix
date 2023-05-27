@@ -24,7 +24,7 @@
         isabelle = pkgs.callPackage ./isabelle.nix { inherit polyml; z3 = pkgs.z3_4_4_0; };
         # Create a fake "emacs" executable which sets the correct path to the LSP server at startup.
         emacs = pkgs.writeShellScriptBin "emacs" ''
-          ${pkgs.emacs}/bin/emacs --eval '(setq lsp-isar-path-to-isabelle "${isabelle}/bin")' "$@"
+          ${pkgs.emacs}/bin/emacs --eval '(setq lsp-isar-path-to-isabelle "${isabelle}")' "$@"
         '';
       in
       {
