@@ -60,6 +60,11 @@ rec {
         ln -s $(${isa} getenv ISABELLE_BROWSER_INFO) $out/share/www
       '';
     });
+
+  custom-emacs =
+    pkgs.writeShellScriptBin "emacs" ''
+      ${pkgs.emacs}/bin/emacs --eval '(setq lsp-isar-path-to-isabelle "${isabelle}")' "$@"
+    '';
 }
 
 
