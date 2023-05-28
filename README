@@ -1,3 +1,0 @@
-This is a simple Nix flake for Isabelle 2022 based on [isabelle-emacs](https://github.com/m-fleury/isabelle-emacs) (branch `Isabelle2022-more-vscode`).
-
-Simply add it as an input to your flake (`isabelle.url = "github:Mesabloo/isabelle.nix";`) and you should be ready to go.

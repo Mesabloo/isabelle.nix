@@ -56,8 +56,9 @@ rec {
 
       installPhase = ''
         mkdir -p $out/share/www
-      
-        ln -s $(${isa} getenv ISABELLE_BROWSER_INFO) $out/share/www
+
+        browser_info_dir=$(${isa} getenv ISABELLE_BROWSER_INFO)
+        cp -r ''${browser_info_dir/#ISABELLE_BROWSER_INFO=}/* $out/share/www
       '';
     });
 
