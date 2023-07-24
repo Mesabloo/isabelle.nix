@@ -7,8 +7,8 @@ stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "lammich";
     repo = "isabelle_llvm";
-    rev = "6be37a9c3cae74a1134dbef2979e312abb5f7f42";
-    sha256 = "07q39d42gncdaqg618m2scpcb1gaiygq6ssldbq8i2dbhb76g9ll";
+    rev = "7089263d2c3a01c3d01fa2711486773e38840762";
+    sha256 = "1d5nl76prkyhjq0avnzrwkniks78rc76gnabk7fkdz6g4pzazrpy";
   };
 
   installPhase = ''
