@@ -58,9 +58,21 @@ let
   #   url = "https://isabelle.sketis.net/components/e-2.6-1.tar.gz";
   #   sha256 = "sha256-G/Wb4LMh6Hr6LeyYygHh+yB38BpcazzscSj1mbBqxxc=";
   # };
+  contrib-easychair = fetchurl {
+    url = "https://isabelle.sketis.net/components/easychair-3.5.tar.gz";
+    sha256 = "sha256-qpTw+9zobn5nrxQq5tpdKMDFs/aPKJaRwTHj6DF4Tgk=";
+  };
+  contrib-eptcs = fetchurl {
+    url = "https://isabelle.sketis.net/components/eptcs-1.7.0.tar.gz";
+    sha256 = "sha256-3fFo3Haj/8JljeN1mGAmLysHznJfvMLxdcUky3jhcSY=";
+  };
   contrib-flatlaf = fetchurl {
-    url = "https://isabelle.sketis.net/components/flatlaf-2.4.tar.gz";
-    sha256 = "sha256-AU+nssu1YwWxkXs2Z2R+y9xPnNxGYkWuq4h6lKejlwo=";
+    url = "https://isabelle.sketis.net/components/flatlaf-2.6.tar.gz";
+    sha256 = "sha256-hxVvP8xt8t2eMfIjBRnID3gfxg+K0j58GmqebQQsk5k=";
+  };
+  contrib-foiltex = fetchurl {
+    url = "https://isabelle.sketis.net/components/foiltex-2.1.4b.tar.gz";
+    sha256 = "sha256-h5P2ltZaY2Rx/XI7OadJ+C+saTmWsxXZhk1yZoW/Rgo=";
   };
   contrib-gnu-utils = fetchurl {
     url = "https://isabelle.sketis.net/components/gnu-utils-20211030.tar.gz";
@@ -75,8 +87,8 @@ let
     sha256 = "sha256-0Q/LhAdVD1tpBnug7z/++LCFalsmwLoVE81oyz6nwHM=";
   };
   contrib-isabelle_setup = fetchurl {
-    url = "https://isabelle.sketis.net/components/isabelle_setup-20221020.tar.gz";
-    sha256 = "sha256-OBUH+B3EuTfFtSMW2GyN9Phta1ThFfKGZbfjeWUAXg0=";
+    url = "https://isabelle.sketis.net/components/isabelle_setup-20230206.tar.gz";
+    sha256 = "sha256-5bF95eBElvYLOFcnKsoRmJEvsSyvNSb0zJdqJnOo7r4=";
   };
   # contrib-jdk = fetchurl {
   #   url = "https://isabelle.sketis.net/components/jdk-17.0.4.1+1.tar.gz";
@@ -94,9 +106,21 @@ let
     url = "https://isabelle.sketis.net/components/jortho-1.0-2.tar.gz";
     sha256 = "sha256-zwBNc1JS3NwA/208m1zEAPVryLfrSe2aMifxJ3ljm60=";
   };
+  contrib-jsoup = fetchurl {
+    url = "https://isabelle.sketis.net/components/jsoup-1.15.4.tar.gz";
+    sha256 = "sha256-RIcF2KJ5gJoZj4EW3dfqXEhXW0oqvbCcwUB3Dy2mciI=";
+  };
   contrib-kodkodi = fetchurl {
     url = "https://isabelle.sketis.net/components/kodkodi-1.5.7.tar.gz";
     sha256 = "sha256-BY5I2vLexZwTJnhSIIPciv08Cby4E8OhGpKNPO+RDqE=";
+  };
+  contrib-lipics = fetchurl {
+    url = "https://isabelle.sketis.net/components/lipics-3.1.3.tar.gz";
+    sha256 = "sha256-cqJ0N+Gytmr03DDC46oN4h7jW8XaavnwlT5/Om0EIKU=";
+  };
+  contrib-llncs = fetchurl {
+    url = "https://isabelle.sketis.net/components/llncs-2.22.tar.gz";
+    sha256 = "sha256-+nbzMDp6WIW8zAWWEqZNTku8EuKXVbAY1jIVY313NfA=";
   };
   contrib-minisat = fetchurl {
     url = "https://isabelle.sketis.net/components/minisat-2.2.1-1.tar.gz";
@@ -107,8 +131,8 @@ let
     sha256 = "sha256-eVG18iGBc9bWxWlE30Dd5QZ8iPjgTDwpvmAZBXkYlVo=";
   };
   contrib-naproche = fetchurl {
-    url = "https://isabelle.sketis.net/components/naproche-20221024.tar.gz";
-    sha256 = "sha256-DSNihlI4jypkq9LhQhbbCcsPwecIv5qrmr3AU8F/+Nw=";
+    url = "https://isabelle.sketis.net/components/naproche-20230902.tar.gz";
+    sha256 = "sha256-WODJTdPbzEC40M7vJmHZNFy9+OoRffCnmrXtrVfa5jU=";
   };
   contrib-nunchaku = fetchurl {
     url = "https://isabelle.sketis.net/components/nunchaku-0.5.tar.gz";
@@ -127,12 +151,20 @@ let
   #   sha256 = "sha256-X+YRSeS5+5mOdjfMSSq0FvfiOtjB5UNPrLThnFIci4M=";
   # };
   contrib-postgresql = fetchurl {
-    url = "https://isabelle.sketis.net/components/postgresql-42.5.0.tar.gz";
-    sha256 = "sha256-Hph41kkDAKi8RlzZ/kH5wpj65Njpne9h7ghW5U9xiVk=";
+    url = "https://isabelle.sketis.net/components/postgresql-42.6.0.tar.gz";
+    sha256 = "sha256-KXb0+kln+Gd3X7R35XFpuHP5uHdt3kCqeoOjzLYTsFY=";
+  };
+  contrib-prismjs = fetchurl {
+    url = "https://isabelle.sketis.net/components/prismjs-1.29.0.tar.gz";
+    sha256 = "sha256-m3v/PRVhzBmc+elanmqap7pkJZWKIYZ25HGnJjpHGHE=";
+  };
+  contrib-rsync = fetchurl {
+    url = "https://isabelle.sketis.net/components/rsync-3.2.7.tar.gz";
+    sha256 = "sha256-pJZbeklOlsbRBCjI82oh/mGpQ+c/vDUQGtI/jmCVYTY=";
   };
   contrib-scala = fetchurl {
-    url = "https://isabelle.sketis.net/components/scala-3.2.0-2.tar.gz";
-    sha256 = "sha256-ewPx/ecHipfmyG2p3eOaufbTjpTGF9wrlBiF0o27Asg=";
+    url = "https://isabelle.sketis.net/components/scala-3.3.0.tar.gz";
+    sha256 = "sha256-66IHIwF5KTJNx1pVsvZZmbZLP6QrOerOob4cdZ7xMU8=";
   };
   contrib-smbc = fetchurl {
     url = "https://isabelle.sketis.net/components/smbc-0.4.1.tar.gz";
@@ -143,12 +175,12 @@ let
     sha256 = "sha256-ZL61lR+fQUB83oBFPXn6rwJH2m/25PqJiC2WcCWkEUw=";
   };
   contrib-sqlite-jdbc = fetchurl {
-    url = "https://isabelle.sketis.net/components/sqlite-jdbc-3.36.0.3.tar.gz";
-    sha256 = "sha256-SYI9N5865nsDCVuKyCBp865rj8Q16HPZOCgNkh3S2IA=";
+    url = "https://isabelle.sketis.net/components/sqlite-jdbc-3.42.0.0-1.tar.gz";
+    sha256 = "sha256-p/gBdJkhRm81QhJHIYWOqSQmKBYkUI8DYKnfo9GqJm4=";
   };
   contrib-stack = fetchurl {
-    url = "https://isabelle.sketis.net/components/stack-2.7.3.tar.gz";
-    sha256 = "sha256-L0qhJGzaXat2DYnpr4E385GQeLzuvFRpKIELTKHTuX0=";
+    url = "https://isabelle.sketis.net/components/stack-2.9.3.tar.gz";
+    sha256 = "sha256-bQ/zKS5KksFbfwWDRtPW4pzHNws1dVhA68JVgXFK0dw=";
   };
   # contrib-vampire = fetchurl {
   #   url = "https://isabelle.sketis.net/components/vampire-4.6.tar.gz";
@@ -170,24 +202,28 @@ let
     url = "https://isabelle.sketis.net/components/zipperposition-2.1-1.tar.gz";
     sha256 = "sha256-zZCvE4HYd2O2trdqtT+NUee+3JnksxewTxgrDvFD2uI=";
   };
+  contrib-zstd-jni = fetchurl {
+    url = "https://isabelle.sketis.net/components/zstd-jni-1.5.5-4.tar.gz";
+    sha256 = "sha256-rWY43x4hlo0gcSo7VlZEe3EuynIWieU9F8k+BhwkJmg=";
+  };
 
   isabelle = stdenv.mkDerivation
     rec {
       pname = "isabelle";
-      version = "2022";
+      version = "2023";
 
       dirname = "Isabelle${version}";
 
       src =
         fetchurl {
-          url = "https://github.com/m-fleury/isabelle-emacs/archive/${dirname}-more-vscode.tar.gz";
-          sha256 = "sha256-w4zZXTnXtBYfrN2201Jr8oXbEUpAR1PH7IwOIcqh774=";
+          url = "https://github.com/m-fleury/isabelle-emacs/archive/${dirname}-vsce.tar.gz";
+          sha256 = "sha256-nE6Ec+4XA3LdC+dFwY7leUvS8EluQJEjclMm3lN39rQ=";
         };
 
       buildInputs = [ polyml z3 veriT vampire eprover-ho nettools curl cvc4 cvc5 leo2 leo3 iprover satallax ];
 
       # sourceRoot = "${dirname}${lib.optionalString stdenv.isDarwin ".app"}";
-      sourceRoot = "isabelle-emacs-${dirname}-more-vscode";
+      sourceRoot = "isabelle-emacs-${dirname}-vsce";
 
       postUnpack =
         ''
@@ -198,8 +234,8 @@ let
           mkdir $sourceRoot/contrib
           cd $sourceRoot/contrib 
 
-          echo 'unpacking source archive ${contrib-apache-commons}'
-          tar -xf ${contrib-apache-commons}
+          # echo 'unpacking source archive ${contrib-apache-commons}'
+          # tar -xf ${contrib-apache-commons}
           echo 'unpacking source archive ${contrib-bash_process}'
           tar -xf ${contrib-bash_process}
           echo 'unpacking source archive ${contrib-bib2xhtml}'
@@ -208,8 +244,14 @@ let
           tar -xf ${contrib-csdp}
           # CVC4
           # E prover
+          echo 'unpacking source archive ${contrib-easychair}'
+          tar -xf ${contrib-easychair}
+          echo 'unpacking source archive ${contrib-eptcs}'
+          tar -xf ${contrib-eptcs}
           echo 'unpacking source archive ${contrib-flatlaf}'
           tar -xf ${contrib-flatlaf}
+          echo 'unpacking source archive ${contrib-foiltex}'
+          tar -xf ${contrib-foiltex}
           echo 'unpacking source archive ${contrib-gnu-utils}'
           tar -xf ${contrib-gnu-utils}
           echo 'unpacking source archive ${contrib-idea-icons}'
@@ -225,8 +267,14 @@ let
           tar -xf ${contrib-jfreechart}
           echo 'unpacking source archive ${contrib-jortho}'
           tar -xf ${contrib-jortho}
+          echo 'unpacking source archive ${contrib-jsoup}'
+          tar -xf ${contrib-jsoup}
           echo 'unpacking source archive ${contrib-kodkodi}'
           tar -xf ${contrib-kodkodi}
+          echo 'unpacking source archive ${contrib-lipics}'
+          tar -xf ${contrib-lipics}
+          echo 'unpacking source archive ${contrib-llncs}'
+          tar -xf ${contrib-llncs}
           echo 'unpacking source archive ${contrib-minisat}'
           tar -xf ${contrib-minisat}
           echo 'unpacking source archive ${contrib-mlton}'
@@ -242,6 +290,10 @@ let
           # PolyML
           echo 'unpacking source archive ${contrib-postgresql}'
           tar -xf ${contrib-postgresql}
+          echo 'unpacking source archive ${contrib-prismjs}'
+          tar -xf ${contrib-prismjs}
+          echo 'unpacking source archive ${contrib-rsync}'
+          tar -xf ${contrib-rsync}
           echo 'unpacking source archive ${contrib-scala}'
           tar -xf ${contrib-scala}
           echo 'unpacking source archive ${contrib-smbc}'
@@ -259,8 +311,13 @@ let
           # Z3
           echo 'unpacking source archive ${contrib-zipperposition}'
           tar -xf ${contrib-zipperposition}
+          echo 'unpacking source archive ${contrib-zstd-jni}'
+          tar -xf ${contrib-zstd-jni}
 
-          cd $OLD_PWD
+          # We don't need the sources...
+          rm -r rsync-*/src
+
+          cd $OLD_PWD          
         '';
 
       postPatch = ''
@@ -362,38 +419,45 @@ let
         src/HOL/TPTP
         #bundled components
         contrib/gnu-utils-20211030
-        contrib/apache-commons-20211211
         contrib/bash_process-1.3
         contrib/bib2xhtml-20190409
         contrib/csdp-6.1.1
         contrib/${cvc4.name}
         contrib/${cvc5.name}
         contrib/${eprover-ho.name}
-        contrib/flatlaf-2.4
+        contrib/easychair-3.5
+        contrib/eptcs-1.7.0
+        contrib/flatlaf-2.6
+        contrib/foiltex-2.1.4b
         contrib/idea-icons-20210508
         contrib/${iprover.name}
         contrib/isabelle_fonts-20211004
-        contrib/isabelle_setup-20221020
+        contrib/isabelle_setup-20230206
         contrib/${java.name}
         contrib/jedit-20211103
         contrib/jfreechart-1.5.3
         contrib/jortho-1.0-2
+        contrib/jsoup-1.15.4
         contrib/kodkodi-1.5.7
         contrib/${leo2.name}
         contrib/${leo3.name}
+        contrib/lipics-3.1.3
+        contrib/llncs-2.22
         contrib/minisat-2.2.1-1
         contrib/mlton-20210117-1
         contrib/nunchaku-0.5
         contrib/opam-2.0.7
         contrib/pdfjs-2.14.305
         contrib/${polyml.name}
-        contrib/postgresql-42.5.0
+        contrib/postgresql-42.6.0
+        contrib/prismjs-1.29.0
+        contrib/rsync-3.2.7
         contrib/${satallax.name}
-        contrib/scala-3.2.0-2
+        contrib/scala-3.3.0
         contrib/smbc-0.4.1
         contrib/spass-3.8ds-2
-        contrib/sqlite-jdbc-3.36.0.3
-        contrib/stack-2.7.3
+        contrib/sqlite-jdbc-3.42.0.0-1
+        contrib/stack-2.9.3
         contrib/${vampire.name}
         contrib/${veriT.name}
         #contrib/vscode_extension-20220829
@@ -401,7 +465,8 @@ let
         contrib/xz-java-1.9
         contrib/${z3.name}
         contrib/zipperposition-2.1-1
-        contrib/naproche-20221024
+        contrib/zstd-jni-1.5.5-4
+        contrib/naproche-20230902
         EOF
 
         # rm contrib/naproche-*/x86*/Naproche-SAD
@@ -430,7 +495,7 @@ let
           --replace 'ISABELLE_APPLE_PLATFORM64=arm64-darwin' ""
       '' + (if ! stdenv.isLinux then "" else ''
         arch=${if stdenv.hostPlatform.system == "x86_64-linux" then "x86_64-linux" else "x86-linux"}
-        for f in contrib/*/$arch/{epclextract,nunchaku,zipperposition}; do
+        for f in contrib/*/$arch/{epclextract,nunchaku,zipperposition,rsync}; do
           patchelf --set-interpreter $(cat ${stdenv.cc}/nix-support/dynamic-linker) "$f"
         done
         for f in contrib/*/platform_$arch/bash_process; do

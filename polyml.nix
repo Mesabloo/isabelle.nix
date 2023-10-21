@@ -10,7 +10,7 @@
 
 stdenv.mkDerivation rec {
   pname = "polyml";
-  version = "bafe319bc3a65bf63bd98a4721a6f4dd9e0eabd6";
+  version = "219e0a248f705b770d45699755d00f05b82a9391";
 
   prePatch = lib.optionalString stdenv.isDarwin ''
     substituteInPlace configure.ac --replace stdc++ c++
@@ -31,8 +31,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "polyml";
     repo = "polyml";
-    rev = "bafe319bc3a65bf63bd98a4721a6f4dd9e0eabd6";
-    sha256 = "sha256-4oo4AB54CivhS99RuZVTP9+Ic0CDpsBb+OiHvOhmZnN=";
+    rev = version;
+    sha256 = "sha256-HtT3MGtHrqVhynmx73L7NC12AW9N7gkkOi7MKbF4k6Y=";
   };
 
   meta = with lib; {

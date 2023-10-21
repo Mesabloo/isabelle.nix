@@ -1,13 +1,13 @@
-{ stdenv, fetchhg, mercurial }:
+{ stdenv, fetchhg, mercurial, lib }:
 
 stdenv.mkDerivation rec {
   pname = "isabelle-afp";
-  version = "2022";
+  version = "2023";
 
   src = fetchhg {
     url = "https://foss.heptapod.net/isa-afp/afp-${version}";
-    rev = "2458cc9f2178445ab58d5403f68df2efb98b1c7d";
-    sha256 = "00s2d939xn0ix1nlhdb5xsjrj7z0mw3pbr6gbdxg0qavnn2l2anc";
+    rev = "Isabelle${version}";
+    sha256 = "sha256-P57t8SCVy0Y7f5J13mmF+rs1XZd9Fv6SCiNrrEEJxt0=";
   };
 
   installPhase = ''
